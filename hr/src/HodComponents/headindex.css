@@ -1,0 +1,7 @@
+.logo {
+    width: 160px;
+    height: 42px;
+    background-image: url("../images/mu-logo.png");
+    margin: 16px 24px 16px 0;
+    float: left;
+  }
