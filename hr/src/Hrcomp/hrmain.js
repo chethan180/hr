@@ -12,7 +12,7 @@ import Search from './search';
 const {REACT_APP_APIKEY} = process.env;
 
 // class Recipies extends Component
-const Recipies = () =>
+const HRMAIN = () =>
 {
     // constructor(props){
     //     super(props);
@@ -121,4 +121,4 @@ const Recipies = () =>
         }
     };
 
-export default Recipies;
+export default HRMAIN;

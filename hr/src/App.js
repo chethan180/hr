@@ -7,7 +7,8 @@ import Homef from './Faccomp/Homef';
 import Head from './HodComponents/Head';
 import Navbar from './Faccomp/navibar';
 import SignUp from './Faccomp/Auth/Auth';
-import Recipies from './Hrcomp/hrmain';
+// import Recipies from './Hrcomp/hrmain';
+import Homeh from './Hrcomp/Homeh';
 
 function App() {
   return (
@@ -33,8 +34,17 @@ function App() {
           <Route path = "/fac/left" exact component = {Homef}/>
           <Route path = "/fac/status" exact component = {Homef}/>
 
+          <Route path = "/hr" exact component = {Homeh}/>
+          <Route path = "/hr/form" exact component = {Homeh}/>
+          <Route path = "/hr/default" exact component = {Homeh}/>
+          <Route path = "/hr/leave" exact component = {Homeh}/>
+          <Route path = "/hr/left" exact component = {Homeh}/>
+          <Route path = "/hr/status" exact component = {Homeh}/>
 
-          <Route path = "/hr" exact component= {Recipies}/>
+
+
+
+          <Route path = "/hr/hr" exact component= {Homeh}/>
         </Switch>
       </main>
     </Router>
