@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Form,
   Input,
@@ -8,6 +8,10 @@ import {
 import { DatePicker } from 'antd';
 // import ReactDOM from 'react-dom';
 // import {   TimePicker } from 'antd';
+import { useDispatch } from 'react-redux';
+import {apply} from '../actions/crud';
+import {useSelector} from 'react-redux';
+import PickerButton from 'antd/lib/date-picker/PickerButton';
 const { RangePicker } = DatePicker;
 
 
@@ -47,20 +51,47 @@ const tailFormItemLayout = {
 
 
 const Forms = () => {
+
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
+
+
+  var Values;
+
+  const post = useSelector((state) => state.crud.data);
+  console.log(post);
 
   const onFinish = (values) => {
     // const rangeTimeValue = values['range-time-picker'];
     const rangeTimeValue = values['range-time-picker'];
-    const Values = {
+    // const From = Values.range-time-Picker.rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss');
+    // console.log(From);
+    Values = {
       ...values,
-      'range-time-picker': [
-        rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
-        rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
-      ]
+      // 'range-time-picker': [
+      //   rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
+      //   rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
+      // ],
+      'From' : rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
+      'To':rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss')
     }
+    dispatch(apply(Values));
     console.log('Received values of form: ', Values);
   };
+
+  // useEffect(() => {
+  //   dispatch(apply(Values));
+  // } ,[dispatch]);
+
+
+  // useEffect(() => {
+  //   if (Values) apply(Values);
+  // }, [Values]);
+
+
+
+
+
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -85,18 +116,18 @@ const Forms = () => {
       // name="nest-messages"
       onFinish={onFinish}
       initialValues={{
-        prefix: '86',
+        prefix: '91',
       }}
       scrollToFirstError
     >
 
     <Form.Item
-        name="Company"
-        label="Company"
+        name="Emp_Id"
+        label="Employee Id"
         rules={[
           {
             required: true,
-            message: 'Please input your Company name!',
+            message: 'Please input your Employee Id name!',
             whitespace: true,
           },
         ]}
@@ -166,12 +197,12 @@ const Forms = () => {
       </Form.Item>
 
       <Form.Item
-        name="Organization"
-        label="Organization"
+        name="Leave_Applied_Date"
+        label="Leave_Applied_Date"
         rules={[
           {
             required: true,
-            message: 'Please input your Organization name!',
+            message: 'Please input your Leave_Applied_Date !',
             whitespace: true,
           },
         ]}
@@ -194,18 +225,20 @@ const Forms = () => {
       </Form.Item>
 
       <Form.Item
-        name="Leavetype"
+        name="Leave_Category"
         label="Leave Type"
         rules={[
           {
             required: true,
-            message: 'Please select gender!',
+            message: 'Please select LeaveCategory!',
           },
         ]}
       >
         <Select placeholder="Leave Type">
-          <Option value="Paid">Paid</Option>
-          <Option value="UnPaid">UnPaid</Option>
+          <Option value="CL">CL</Option>
+          <Option value="EL">EL</Option>
+          <Option value="ML">ML</Option>
+          <Option value="COMP_OF">COMP_OF</Option>
         </Select>
       </Form.Item>
 
@@ -255,13 +288,9 @@ const Forms = () => {
         </Select>
       </Form.Item>
 
-      <Form.Item name={['user', 'introduction']} label="Remarks">
+      <Form.Item name= "Remarks" label="Remarks">
         <Input.TextArea />
       </Form.Item>
-
-
-
-
 
 
       

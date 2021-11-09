@@ -8,6 +8,7 @@ import Past from './routes/past.js';
 import Balance from './routes/balance.js';
 import Approve from './routes/approve.js';
 import Put from './routes/put.js';
+import Hr from './routes/hr.js';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -28,6 +29,7 @@ app.use("/users",route);
 app.use("/balance",Balance);
 app.use('/approve' , Approve);
 app.use('/put' , Put);
+app.use('/hr' , Hr);
 
 
 const CONNECTION_URL = `mongodb+srv://${user}:${pswrd}@cluster0.p6xod.mongodb.net/HR?retryWrites=true&w=majority`;

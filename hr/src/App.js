@@ -7,6 +7,7 @@ import Homef from './Faccomp/Homef';
 import Head from './HodComponents/Head';
 import Navbar from './Faccomp/navibar';
 import SignUp from './Faccomp/Auth/Auth';
+import Recipies from './Hrcomp/hrmain';
 
 function App() {
   return (
@@ -26,11 +27,14 @@ function App() {
           <Route path = "/hod/mix" exact component = {Home}/>
 
           <Route path = "/fac" exact component = {Homef}/>
-          <Route path = "/fac/form" exact component = {Home}/>
-          <Route path = "/fac/default" exact component = {Home}/>
-          <Route path = "/fac/leave" exact component = {Home}/>
-          <Route path = "/fac/left" exact component = {Home}/>
-          <Route path = "/fac/status" exact component = {Home}/>
+          <Route path = "/fac/form" exact component = {Homef}/>
+          <Route path = "/fac/default" exact component = {Homef}/>
+          <Route path = "/fac/leave" exact component = {Homef}/>
+          <Route path = "/fac/left" exact component = {Homef}/>
+          <Route path = "/fac/status" exact component = {Homef}/>
+
+
+          <Route path = "/hr" exact component= {Recipies}/>
         </Switch>
       </main>
     </Router>

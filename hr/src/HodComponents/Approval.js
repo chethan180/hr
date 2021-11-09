@@ -15,19 +15,20 @@ const Approval = (props) =>{
   
   return(
         <Table dataSource={hello}>
-        <ColumnGroup title="Info">
-        <Column title="Empid" dataIndex="key" key="key" />
-          <Column title="Firstname" dataIndex="Firstname" key="Firstname" />
-        </ColumnGroup>
-        {/* <Column title="Company" dataIndex="Company" key="Company" />
-        <Column title="Department" dataIndex="Department" key="Department" /> */}
-        <Column title="LeaveReason" dataIndex="LeaveReason" key="LeaveReason" />
-        <Column title="Leavetype" dataIndex="Leavetype" key="Leavetype" />
-        {/* <Column title="email" dataIndex="email" key="email" />
-        <Column title="phone" dataIndex="phone" key="phone" /> */}
-        <Column title="from" dataIndex="from" key="from" />
-        <Column title="to" dataIndex="to" key="to" />
-        <Column title="RequestedLeave" dataIndex="RequestedLeave" key="RequestedLeave" />        
+      {/* <ColumnGroup title="Name">
+        <Column title="Firstname" dataIndex="Firstname" key="Firstname" />
+        <Column title="Lastname" dataIndex="Lastname" key="Lastname" />
+  </ColumnGroup> */}
+      <Column title="Id" dataIndex="Emp_Id" key="Emp_Id" />
+      {/* <Column title="Department" dataIndex="Department" key="Department" />  */}
+      <Column title="Leave_Applied_Date" dataIndex="Leave_Applied_Date" key="Leave_Applied_Date" />
+      <Column title="Leavetype" dataIndex="Leave_Category" key="Leave_Category" />
+      {/* <Column title="email" dataIndex="email" key="email" />
+      <Column title="phone" dataIndex="phone" key="phone" /> */}
+      <Column title="From" dataIndex="From" key="From" />
+      <Column title="To" dataIndex="To" key="To" />
+      {/* <Column title="RequestedLeave" dataIndex="RequestedLeave" key="RequestedLeave" />         */}
+      <Column title="status" dataIndex="is_Approved" key="is_Approved" />   
         {/* <Column title="status" dataIndex="status" key="status" /> */}
 
           <Column
@@ -35,7 +36,7 @@ const Approval = (props) =>{
             key="action"
             render={(text, record) => (
               <Space size="middle">
-                <Button type="link" onClick = {() => props.change(record.key) }>
+                <Button type="link" onClick = {() => props.change(record.Emp_Id) }>
                   View More
                 </Button>
               </Space>

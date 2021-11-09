@@ -12,6 +12,8 @@ import React, { useEffect, useState } from "react";
 // import Leave from './Leave';
 // import Left from './Left';
 import Status from './Status';
+// import { useDispatch } from 'react-redux';
+// import {getPosts} from '../actions/crud';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -26,13 +28,18 @@ const Homef = () => {
     setCollapsed (!collapsed);
   };
   // const history = useHistory();
-  useEffect(() => {
-    // const listener = e => {
-    //   e.preventDefault()
-    // history.push("/");
-    // // history.replace(redirectPath);
-    // }
-  },[]);
+  // useEffect(() => {
+  //   // const listener = e => {
+  //   //   e.preventDefault()
+  //   // history.push("/");
+  //   // // history.replace(redirectPath);
+  //   // }
+  // },[]);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getPosts());
+  // } ,[dispatch]);
 
     return (
       <Router>
