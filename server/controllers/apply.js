@@ -43,7 +43,7 @@ export const applye =
             if(y === "EL")
             {
                 if(leaveb.EL > 0 ){
-                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : false ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
+                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
                     // console.log(result);
                     return res.status(200).json(result);
                 }
@@ -55,7 +55,7 @@ export const applye =
             if(y === "ML")
             {
                 if(leaveb.ML > 0 ){
-                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : false ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
+                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
                     // console.log(result);
                     return res.status(200).json(result);
                 }
@@ -67,7 +67,7 @@ export const applye =
             if(y === "COMP_OF")
             {
                 if(leaveb.COMP_OF > 0 ){
-                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : false ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
+                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
                     // console.log(result);
                     return res.status(200).json(result);
                 }

@@ -1,4 +1,4 @@
-import { FETCH_ALL,CREATE ,FETCH_ALL_HOD , UPDATE, FETCH_ALL_HR} from '../constants/actionTypes';
+import { FETCH_ALL,CREATE ,FETCH_ALL_HOD , UPDATE,LOGOUT,AUTH, FETCH_ALL_HR} from '../constants/actionTypes';
 
 export default (crud = [], action) => {
     switch(action.type ){
@@ -16,6 +16,19 @@ export default (crud = [], action) => {
             return action.payload;
         case UPDATE:
             return action.payload;
+        // case AUTH:
+        //     {
+        //         console.log(action.payload);
+        //         localStorage.setItem('profile', JSON.stringify({ ...action?.data }));
+
+        //         return { ...crud, authData: action.data, loading: false, errors: null };
+        //     }
+        // case LOGOUT:
+        // {
+        //     localStorage.clear();
+
+        //     return { ...crud, authData: null, loading: false, errors: null };
+        // }
         default :
             return crud;
     }
