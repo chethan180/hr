@@ -15,6 +15,7 @@ import { io } from "socket.io-client";
 
 const Mix =() => {
     const [ids , setids] = useState('');
+    const [apptime , setapptime] = useState('');
     const socket = useRef();
 
   const [loading,setLoading] = useState(false);
@@ -22,13 +23,6 @@ const Mix =() => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-
-
-
-
-
-
-
 
 
   const logout = () => {
@@ -52,7 +46,7 @@ const Mix =() => {
         //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const post = useSelector((state) => state.crud.data);
+  const post = useSelector((state) => state?.hod.data);
   console.log(post);
 
   useEffect(() => {
@@ -95,9 +89,13 @@ const Mix =() => {
   console.log(posts.result);
 
     const handchange = (value) => {
+        console.log(value);
         setids(value);
     }
-
+    const handchangedate = (value) => {
+      console.log(value);
+      setapptime(value);
+  }
 
 
     if(loading){
@@ -105,7 +103,7 @@ const Mix =() => {
       // console.log(ids);
       for(let val of posts.result )
       {
-          if(val.Emp_Id === ids)
+          if(val.Emp_Id === ids && val.Leave_Applied_Date === apptime)
           {
                x = val;
           }    
@@ -114,7 +112,7 @@ const Mix =() => {
         <Router>
             <main>
                 <CardDetails data = {x} host = {post} val = {ids}/>
-                <Approval data = {posts.result} change={handchange} />  
+                <Approval data = {posts.result} change={handchange} changedate = {handchangedate}/>  
             </main>
         </Router>
     );

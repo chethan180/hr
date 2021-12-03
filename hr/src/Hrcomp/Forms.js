@@ -1,18 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useRef,useState } from 'react';
 import {
   Form,
   Input,
   Select,
   Button,
+  Result,
 } from 'antd';
 import { DatePicker } from 'antd';
 // import ReactDOM from 'react-dom';
 // import {   TimePicker } from 'antd';
 import { useDispatch } from 'react-redux';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import {apply} from '../actions/crud';
 import {useSelector} from 'react-redux';
 import PickerButton from 'antd/lib/date-picker/PickerButton';
+import {io} from 'socket.io-client';
+import decode from 'jwt-decode';
+import * as actionType from '../constants/actionTypes';
+
 const { RangePicker } = DatePicker;
+
 
 
 const { Option } = Select;
@@ -51,30 +58,64 @@ const tailFormItemLayout = {
 
 
 const Forms = () => {
-
+  
+  const socket = useRef();
   const dispatch = useDispatch();
   const [form] = Form.useForm();
+  const history = useHistory();
+  const today = Date.now();
+  // const [socket,setSocket] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const logout = () => {
+    dispatch({ type: actionType.LOGOUT });
 
+    history.push('/auth');
 
+    setUser(null);
+  };
+  useEffect(() => {
+    // console.log(user?.result.Emp_Id);
+    // console.log(Date.now());
+
+console.log();
+    const token = user?.token;
+
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
+
+    setUser(JSON.parse(localStorage.getItem('profile')));
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    socket.current = io("ws://192.168.43.161:3001");
+    console.log(socket);
+  }, []);
+  useEffect(() => {
+    socket.current.emit("addUser", user?.result.Emp_Id);
+  }, [user]);
   var Values;
 
   const post = useSelector((state) => state.crud.data);
   console.log(post);
 
   const onFinish = (values) => {
-    // const rangeTimeValue = values['range-time-picker'];
     const rangeTimeValue = values['range-time-picker'];
-    // const From = Values.range-time-Picker.rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss');
-    // console.log(From);
     Values = {
       ...values,
-      // 'range-time-picker': [
-      //   rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
-      //   rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
-      // ],
+      'Emp_Id' : user?.result.Emp_Id,
+      'Leave_Applied_Date': new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today),
       'From' : rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
       'To':rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss')
     }
+    socket.current.emit("sendMessage", {
+      senderId: user?.result.Emp_Id,
+      receiverId : "123",
+      text: Values,
+    });
+
     dispatch(apply(Values));
     console.log('Received values of form: ', Values);
   };
@@ -121,7 +162,7 @@ const Forms = () => {
       scrollToFirstError
     >
 
-    <Form.Item
+    {/* <Form.Item
         name="Emp_Id"
         label="Employee Id"
         rules={[
@@ -133,9 +174,9 @@ const Forms = () => {
         ]}
       >
         <Input />
-      </Form.Item>
+      </Form.Item> */}
 
-      <Form.Item
+      {/* <Form.Item
         name="Firstname"
         label="First name"
         rules={[
@@ -159,9 +200,9 @@ const Forms = () => {
         ]}
       >
         <Input />
-      </Form.Item>
+      </Form.Item> */}
 
-      <Form.Item
+      {/* <Form.Item
         name="phone"
         label="Phone Number"
         rules={[
@@ -177,9 +218,9 @@ const Forms = () => {
             width: '100%',
           }}
         />
-      </Form.Item>
+      </Form.Item> */}
 
-      <Form.Item
+      {/* <Form.Item
         name="email"
         label="E-mail"
         rules={[
@@ -194,9 +235,9 @@ const Forms = () => {
         ]}
       >
         <Input />
-      </Form.Item>
+      </Form.Item> */}
 
-      <Form.Item
+      {/* <Form.Item
         name="Leave_Applied_Date"
         label="Leave_Applied_Date"
         rules={[
@@ -208,9 +249,9 @@ const Forms = () => {
         ]}
       >
         <Input />
-      </Form.Item>
+      </Form.Item> */}
 
-      <Form.Item
+      {/* <Form.Item
         name="Department"
         label="Department"
         rules={[
@@ -222,7 +263,7 @@ const Forms = () => {
         ]}
       >
         <Input />
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item
         name="Leave_Category"
@@ -270,7 +311,7 @@ const Forms = () => {
 
 
 
-      <Form.Item
+      {/* <Form.Item
         name="LeaveReason"
         label="Leave Reason"
         rules={[
@@ -286,7 +327,7 @@ const Forms = () => {
           <Option value="B">B</Option>
           <Option value="C">C</Option>
         </Select>
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item name= "Remarks" label="Remarks">
         <Input.TextArea />

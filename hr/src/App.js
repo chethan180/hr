@@ -40,6 +40,7 @@ function App() {
           <Route path = "/hr/leave" exact component = {Homeh}/>
           <Route path = "/hr/left" exact component = {Homeh}/>
           <Route path = "/hr/status" exact component = {Homeh}/>
+          <Route path = "/hr/leaves" exact component = {Homeh}/>
 
 
 

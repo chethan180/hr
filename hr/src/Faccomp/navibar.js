@@ -37,7 +37,7 @@ const Navbar = () => {
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <div className={classes.brandContainer}>
-        <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">Mahindra University</Typography>
+        <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">MU</Typography>
         {/* <img className={classes.image} src="" alt="icon" height="60" /> */}
       </div>
       <Toolbar className={classes.toolbar}>

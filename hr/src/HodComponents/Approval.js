@@ -18,7 +18,7 @@ const Approval = (props) =>{
       {/* <ColumnGroup title="Name">
         <Column title="Firstname" dataIndex="Firstname" key="Firstname" />
         <Column title="Lastname" dataIndex="Lastname" key="Lastname" />
-  </ColumnGroup> */}
+        </ColumnGroup> */}
       <Column title="Id" dataIndex="Emp_Id" key="Emp_Id" />
       {/* <Column title="Department" dataIndex="Department" key="Department" />  */}
       <Column title="Leave_Applied_Date" dataIndex="Leave_Applied_Date" key="Leave_Applied_Date" />
@@ -29,14 +29,14 @@ const Approval = (props) =>{
       <Column title="To" dataIndex="To" key="To" />
       {/* <Column title="RequestedLeave" dataIndex="RequestedLeave" key="RequestedLeave" />         */}
       <Column title="status" dataIndex="is_Approved" key="is_Approved" />   
-        {/* <Column title="status" dataIndex="status" key="status" /> */}
+      {/* <Column title="status" dataIndex="status" key="status" /> */}
 
           <Column
             title="Action"
             key="action"
             render={(text, record) => (
               <Space size="middle">
-                <Button type="link" onClick = {() => props.change(record.Emp_Id) }>
+                <Button type="link" onClick = {() => props.change(record.Emp_Id),props.change(record.Leave_Applied_Date) }>
                   View More
                 </Button>
               </Space>

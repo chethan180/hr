@@ -11,8 +11,8 @@ export const pute = async(req,res) => {
         const y1 = x.num;
         const z3 = x.response;
 
-        const oldStaff = await leave.findOne({ 'Emp_Id': x.Request_Id ,'Approver_Id' : x.Emp_Id ,'From' : x.From,'To' : x.To});
-
+        const oldStaff = await leave.findOne({ 'Emp_Id': x.Request_Id ,'Approver_Id' : x.Emp_Id ,'From' : x.From,'To' : x.To,Leave_Applied_Date : x.Leave_Applied_Date});
+        console.log(oldStaff);
         const oldStaffBalance = await leaveBalance.findOne({'Emp_Id' : x.Request_Id});
 
         if(y === "CL")

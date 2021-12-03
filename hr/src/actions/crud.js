@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE ,FETCH_ALL_HOD ,FETCH_ALL_HR ,AUTH,UPDATE} from '../constants/actionTypes';
+import { FETCH_ALL, CREATE ,FETCH_ALL_HOD ,FETCH_ALL_HR ,AUTH,UPDATE, FETCH_BALANCE, FETCH_ALL_LEAVE} from '../constants/actionTypes';
 import * as api from '../api';
 
 export const getPosts = (formData) => async (dispatch) => {
@@ -64,6 +64,29 @@ export const apply = (formData) => async (dispatch) => {
     }
   };
 
+  export const balance = (formData,router) => async (dispatch) => {
+    try {
+        console.log(formData);
+      const data3  = await api.fetchbalance(formData);
+  
+      dispatch({ type: FETCH_BALANCE, payload: data3 });
+      // router.push('/hod/mix');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  export const aleave = (formData,router) => async (dispatch) => {
+    try {
+        console.log(formData);
+      const data3  = await api.fetchleaves(formData);
+  
+      dispatch({ type: FETCH_ALL_LEAVE, payload: data3 });
+      // router.push('/hod/mix');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   export const signin = (formData, router) => async (dispatch) => {
     try {

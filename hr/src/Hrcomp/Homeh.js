@@ -15,6 +15,7 @@ import Status from './Status';
 // import { useDispatch } from 'react-redux';
 // import {getPosts} from '../actions/crud';
 import HRMAIN from './hrmain';
+import Aleave from './Aleave';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -70,6 +71,10 @@ const Homeh = () => {
             <Link to = "/hr/hr"/>
           </Menu.Item>
           <Menu.Item key="4" icon={<UserOutlined />}>
+            Leaves
+            <Link to = "/hr/leaves"/>
+          </Menu.Item>
+          <Menu.Item key="5" icon={<UserOutlined />}>
             SOP's
             <Link to = "/hr/default"/>
           </Menu.Item>
@@ -84,6 +89,7 @@ const Homeh = () => {
           <Route path = "/hr/default" exact component = {Default}/>
           <Route path = "/hr/hr" exact component = {HRMAIN}/>
           <Route path = "/hr/status" exact component = {Status}/>
+          <Route path = "/hr/leaves" exact component = {Aleave}/>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Mahindra University</Footer>
       </Layout>

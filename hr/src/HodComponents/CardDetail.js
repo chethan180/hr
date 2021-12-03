@@ -14,12 +14,12 @@ import {useSelector} from 'react-redux';
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const post = useSelector((state) => state.crud.data);
+    const post = useSelector((state) => state.updt);
 
     console.log(post);
 
 
-    if(props.val === ""){
+    if(props.data === ""){
       return(
         <div>
           
@@ -27,8 +27,9 @@ import {useSelector} from 'react-redux';
       );
     }
     else {
-      const x =  props.data; 
-      const y = {Emp_Id: x.Approver_Id , Request_Id : x.Emp_Id,Type: x.Leave_Category , num: "1",response: "",From : x.From,To:x.To};
+      console.log(props);
+      const x =  props.host; 
+      const y = {Emp_Id: x.Approver_Id , Request_Id : x.Emp_Id,Type: x.Leave_Category , num: "1",response: "",From : x.From,To:x.To,Leave_Applied_Date: x.Leave_Applied_Date};
   
       const handleSubmit1 = (e) => {
         e.preventDefault()
@@ -38,6 +39,7 @@ import {useSelector} from 'react-redux';
       const handleSubmit2 = (e) => {
         e.preventDefault()
         const xy = {...y,response:"false"};
+        console.log(xy);
         dispatch(approve(xy , history));
       }
 
