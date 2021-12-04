@@ -11,7 +11,8 @@ const Approval = (props) =>{
   
 
   const hello = props.data;
-  // console.log(hello);
+  console.log(props);
+  console.log(hello);
   
   return(
         <Table dataSource={hello}>
@@ -36,7 +37,7 @@ const Approval = (props) =>{
             key="action"
             render={(text, record) => (
               <Space size="middle">
-                <Button type="link" onClick = {() => props.change(record.Emp_Id),props.change(record.Leave_Applied_Date) }>
+                <Button type="link" onClick = {() => props.change(record.Emp_Id , record.Leave_Applied_Date )}>
                   View More
                 </Button>
               </Space>

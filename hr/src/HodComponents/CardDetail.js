@@ -10,7 +10,8 @@ import {useSelector} from 'react-redux';
 // const y = {Emp_Id: "" , Request_Id : "",Type: "" , num: "",response: ""};
 
   const CardDetails = (props)=>{
-    // console.log(post3);
+    console.log(props);
+
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -19,7 +20,7 @@ import {useSelector} from 'react-redux';
     console.log(post);
 
 
-    if(props.data === ""){
+    if(!props.data){
       return(
         <div>
           
@@ -28,7 +29,7 @@ import {useSelector} from 'react-redux';
     }
     else {
       console.log(props);
-      const x =  props.host; 
+      const x =  props.data; 
       const y = {Emp_Id: x.Approver_Id , Request_Id : x.Emp_Id,Type: x.Leave_Category , num: "1",response: "",From : x.From,To:x.To,Leave_Applied_Date: x.Leave_Applied_Date};
   
       const handleSubmit1 = (e) => {

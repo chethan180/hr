@@ -11,7 +11,7 @@ import decode from 'jwt-decode';
 import * as actionType from '../constants/actionTypes';
 import { io } from "socket.io-client";
 
-  const form = {Emp_Id : 123};
+  // const form = {Emp_Id : 123};
 
 const Mix =() => {
     const [ids , setids] = useState('');
@@ -23,6 +23,7 @@ const Mix =() => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const form = {Emp_Id :user?.result.Emp_Id};
 
 
   const logout = () => {
@@ -43,6 +44,7 @@ const Mix =() => {
     }
 
     setUser(JSON.parse(localStorage.getItem('profile')));
+
         //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -72,13 +74,18 @@ const Mix =() => {
 
   useEffect(() => {
     console.log("hi");
-    dispatch(getHodPosts(form));
+    if(form){
+      dispatch(getHodPosts(form));
+    }
   } ,[dispatch]);
   //   dispatch(getHodPosts(form));
 
 
 
   useEffect(() => {
+    setPosts([]);
+      setids('');
+      setapptime('');
     if(post){
       setPosts(post);
       setLoading(true);
@@ -88,14 +95,16 @@ const Mix =() => {
 
   console.log(posts.result);
 
-    const handchange = (value) => {
-        console.log(value);
-        setids(value);
+    const handchange = (value2,value3) => {
+        console.log(value2);
+        console.log(value3);
+        setids(value2);
+        setapptime(value3);
     }
-    const handchangedate = (value) => {
-      console.log(value);
-      setapptime(value);
-  }
+  //   const handchangedate = (value1) => {
+  //     console.log(value1);
+  //     setapptime(value1);
+  // }
 
 
     if(loading){
@@ -111,8 +120,8 @@ const Mix =() => {
       return(
         <Router>
             <main>
-                <CardDetails data = {x} host = {post} val = {ids}/>
-                <Approval data = {posts.result} change={handchange} changedate = {handchangedate}/>  
+                <CardDetails data = {x} host = {post} val2 = {ids} val1 = {apptime}/>
+                <Approval data = {posts.result} change={handchange} />  
             </main>
         </Router>
     );

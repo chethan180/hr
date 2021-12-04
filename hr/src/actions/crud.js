@@ -58,7 +58,7 @@ export const apply = (formData) => async (dispatch) => {
       const data3  = await api.approvePost(formData);
   
       dispatch({ type: UPDATE, payload: data3 });
-      // router.push('/hod/mix');
+      router.push('/hod/mix');
     } catch (error) {
       console.log(error);
     }
