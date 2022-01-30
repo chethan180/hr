@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import {BrowserRouter as Router } from "react-router-dom";
 import Leave from './Leave';
 import Left from './Left';
+import  Leaveone  from './Leaveone';
 
 
 const Status = () =>
@@ -13,6 +14,7 @@ const Status = () =>
         <main>
             <Left/>
             <Leave/>
+            {/* <Leaveone/> */}
         </main>
         </Router>
     );

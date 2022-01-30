@@ -7,10 +7,9 @@ import { useDispatch } from 'react-redux';
 import {getPosts} from '../actions/crud';
 import {useSelector} from 'react-redux';
 import { connect } from "react-redux";
-
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 // const post = [];
-
 
 // import Left from './Left';
 const { Column } = Table;
@@ -26,7 +25,66 @@ const Leave= ({post}) =>
 
   const form = {Emp_Id :user?.result.Emp_Id};
 
+  const isWebDevice = useMediaQuery('(min-width:700px)');
+  const deviceColumns = [
+      {
+        title: "Student Data",
+        render: (record, key, index) => {
+           const from = record.From;
+           const to = record.To;
+           const Leave_Applied_Date = record.Leave_Applied_Date;
+           const Leave_Category = record.Leave_Category;
+           const status = record.is_Approved;
+           return (
+               <div>
+                    <span>
+                          <h4>From</h4>
+                          <h4>{from}</h4>
+                    </span>
+                    <span>
+                          <h4>To</h4>
+                          <h4>{to}</h4>
+                    </span>
+                    <span>
+                          <h4>Leave_Applied_Date</h4>
+                          <h4>{Leave_Applied_Date}</h4>
+                    </span>
+                    <span>
+                          <h4>LeaveType</h4>
+                          <h4>{Leave_Category}</h4>
+                    </span>
+                    <span>
+                          <h4>status</h4>
+                          <h4>{status}</h4>
+                    </span>
+               </div>
+           )
+        }
+    }
+    ];
 
+    const columns = [
+      {
+        title: "From",
+        dataIndex: "From",
+      },
+      {
+        title: "To",
+        dataIndex: "To",
+      },
+      {
+        title: "Leave_Applied_Date",
+        dataIndex: "Leave_Applied_Date",
+      },
+      {
+        title: "Leavetype",
+        dataIndex: "Leave_Category",
+      },
+      {
+          title: "status",
+          dataIndex: "is_Approved",
+        },
+    ];
 
   // const post = useSelector((state) => state.crud.data);
   // console.log(post);
@@ -59,23 +117,29 @@ const Leave= ({post}) =>
     //   post[0] = {...post[0] , "is_Approved" : "pending"};
     // }
     return(
-      <Table dataSource={posts} responsive = "md">
-      {/* <ColumnGroup title="Name">
-        <Column title="Firstname" dataIndex="Firstname" key="Firstname" />
-        <Column title="Lastname" dataIndex="Lastname" key="Lastname" />
-      </ColumnGroup>
-      <Column title="Company" dataIndex="Company" key="Company" />
-      <Column title="Department" dataIndex="Department" key="Department" /> */}
-      <Column title="Leave_Applied_Date" dataIndex="Leave_Applied_Date" key="Leave_Applied_Date" />
-      <Column title="Leavetype" dataIndex="Leave_Category" key="Leave_Category" />
-      {/* <Column title="email" dataIndex="email" key="email" />
-      <Column title="phone" dataIndex="phone" key="phone" /> */}
-      <Column title="From" dataIndex="From" key="From" />
-      <Column title="To" dataIndex="To" key="To" />
-      {/* <Column title="RequestedLeave" dataIndex="RequestedLeave" key="RequestedLeave" />         */}
-      <Column title="status" dataIndex="is_Approved" key="is_Approved" />
+    //   <Table dataSource={posts} responsive = "md">
+    //   {/* <ColumnGroup title="Name">
+    //     <Column title="Firstname" dataIndex="Firstname" key="Firstname" />
+    //     <Column title="Lastname" dataIndex="Lastname" key="Lastname" />
+    //   </ColumnGroup>
+    //   <Column title="Company" dataIndex="Company" key="Company" />
+    //   <Column title="Department" dataIndex="Department" key="Department" /> */}
+    //   <Column title="Leave_Applied_Date" dataIndex="Leave_Applied_Date" key="Leave_Applied_Date" />
+    //   <Column title="Leavetype" dataIndex="Leave_Category" key="Leave_Category" />
+    //   {/* <Column title="email" dataIndex="email" key="email" />
+    //   <Column title="phone" dataIndex="phone" key="phone" /> */}
+    //   <Column title="From" dataIndex="From" key="From" />
+    //   <Column title="To" dataIndex="To" key="To" />
+    //   {/* <Column title="RequestedLeave" dataIndex="RequestedLeave" key="RequestedLeave" />         */}
+    //   <Column title="status" dataIndex="is_Approved" key="is_Approved" />
 
-    </Table>
+    // </Table>
+      //   <Table columns={columns} dataSource={data} pagination={false} />
+      <Table 
+      columns={isWebDevice ? columns : deviceColumns}
+      dataSource={posts} 
+      pagination={false} 
+  />
   );
   }
   else {

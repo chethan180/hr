@@ -33,6 +33,10 @@ export const apply = (formData) => async (dispatch) => {
     try {
         console.log(formData);
       const data1  = await api.createPost(formData);
+      console.log(data1.data);
+      if(data1.status === 202){
+        alert(data1.data);
+      }
   
       dispatch({ type: CREATE, payload: data1 });
     } catch (error) {

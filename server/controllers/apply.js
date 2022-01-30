@@ -17,6 +17,10 @@ export const applye =
             if (!oldStaff) return res.status(404).json({message : "User dosen't exist"});
 
             var y = x.Leave_Category;
+            var date1 = x.From;
+            var date2 = x.To;
+
+            var diff =  Math.floor(( Date.parse(date2) - Date.parse(date1) ) / 86400000);
             // console.log(x.Emp_Id);
             if (!y) return res.status(404).json({message : "y prob"});
             const leaveb = await leaveBalance.findOne({ 'Emp_Id': x.Emp_Id });
@@ -28,10 +32,10 @@ export const applye =
             // console.log(approver);
             // console.log(Higher);
             // console.log(leaveb);
-            if(y === "CL")
+            if(y === "CL" )
             {
-                if(leaveb.CL > 0 ){
-                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
+                if(leaveb.CL > 0 && diff <= leaveb.CL){
+                    const result = await leave.create({no_Of_Days : diff ,Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
                     // console.log(result);
                     return res.status(200).json(result);
                 }
@@ -42,8 +46,8 @@ export const applye =
 
             if(y === "EL")
             {
-                if(leaveb.EL > 0 ){
-                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
+                if(leaveb.EL > 0 && diff <= leaveb.EL){
+                    const result = await leave.create({no_Of_Days : diff ,Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
                     // console.log(result);
                     return res.status(200).json(result);
                 }
@@ -54,8 +58,8 @@ export const applye =
 
             if(y === "ML")
             {
-                if(leaveb.ML > 0 ){
-                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
+                if(leaveb.ML > 0 && diff <= leaveb.ML){
+                    const result = await leave.create({no_Of_Days : diff ,Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
                     // console.log(result);
                     return res.status(200).json(result);
                 }
@@ -64,10 +68,10 @@ export const applye =
                 }
             }
 
-            if(y === "COMP_OF")
+            if(y === "COMP_OF" )
             {
-                if(leaveb.COMP_OF > 0 ){
-                    const result = await leave.create({Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
+                if(leaveb.COMP_OF > 0 && diff <= leaveb.COMP_OF){
+                    const result = await leave.create({no_Of_Days : diff ,Emp_Id : x.Emp_Id ,Approver_Id:approverdb.Approver_Id,Higher_Id:approverdb.Higher_Id, Staff_Name : oldStaff.Staff_Name , Designation : oldStaff.Designation  , From : x.From , To : x.To ,Remarks : x.Remarks ,is_Approved : "" ,Leave_Category: x.Leave_Category ,  Leave_Applied_Date : x.Leave_Applied_Date });
                     // console.log(result);
                     return res.status(200).json(result);
                 }
@@ -81,6 +85,7 @@ export const applye =
             // await newStaff.save();
             // return res.status(200).json(newStaff); 
         }catch(error){
+            console.log(error.message);
             res.status(500).json({ message: error.message });
         }
 

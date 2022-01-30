@@ -9,13 +9,16 @@ import Navbar from './Faccomp/navibar';
 import SignUp from './Faccomp/Auth/Auth';
 // import Recipies from './Hrcomp/hrmain';
 import Homeh from './Hrcomp/Homeh';
+import ResponsiveAppBar from './Faccomp/naviibar';
+import { Result } from 'antd';
 
 function App() {
   return (
     <Router>
       <main>
         {/* <Head/> */}
-        <Navbar/>
+        {/* <Navbar/> */}
+        <ResponsiveAppBar/>
         <Switch>
           <Route path = "/auth" exact component = {SignUp}/>
  

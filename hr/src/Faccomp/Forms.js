@@ -102,13 +102,23 @@ console.log();
   console.log(post);
 
   const onFinish = (values) => {
+    // const start = '2010-01-25';
+    // const end = '2010-01-20';
+    // var diff =  Math.floor(( Date.parse(end) - Date.parse(start) ) / 86400000);
+
+    // console.log("hi", diff);
+    // // const days_between = Math.ceil(Math.abs(end - start) / 86400);
+    // // var Difference_In_Time = values.To.getTime() - values.From.getTime()
+    // // console.log( Difference_In_Time);
+
     const rangeTimeValue = values['range-time-picker'];
     Values = {
       ...values,
       'Emp_Id' : user?.result.Emp_Id,
       'Leave_Applied_Date': new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today),
-      'From' : rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
-      'To':rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss')
+      // "Date_Of_Issue" : values['Date_Of_Issue'].format('YYYY-MM-DD'),
+      'From' : rangeTimeValue[0].format('YYYY-MM-DD'),
+      'To':rangeTimeValue[1].format('YYYY-MM-DD')
     }
     socket.current.emit("sendMessage", {
       senderId: user?.result.Emp_Id,
@@ -118,6 +128,7 @@ console.log();
 
     dispatch(apply(Values));
     console.log('Received values of form: ', Values);
+    // form.resetFields();
   };
 
   // useEffect(() => {
@@ -162,109 +173,6 @@ console.log();
       scrollToFirstError
     >
 
-    {/* <Form.Item
-        name="Emp_Id"
-        label="Employee Id"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Employee Id name!',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item> */}
-
-      {/* <Form.Item
-        name="Firstname"
-        label="First name"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Firstname!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        name="Lastname"
-        label="Lastname"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Lastname!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item> */}
-
-      {/* <Form.Item
-        name="phone"
-        label="Phone Number"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your phone number!',
-          },
-        ]}
-      >
-        <Input
-          addonBefore={prefixSelector}
-          style={{
-            width: '100%',
-          }}
-        />
-      </Form.Item> */}
-
-      {/* <Form.Item
-        name="email"
-        label="E-mail"
-        rules={[
-          {
-            type: 'email',
-            message: 'The input is not valid E-mail!',
-          },
-          {
-            required: true,
-            message: 'Please input your E-mail!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item> */}
-
-      {/* <Form.Item
-        name="Leave_Applied_Date"
-        label="Leave_Applied_Date"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Leave_Applied_Date !',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item> */}
-
-      {/* <Form.Item
-        name="Department"
-        label="Department"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Department name!',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item> */}
-
       <Form.Item
         name="Leave_Category"
         label="Leave Type"
@@ -288,12 +196,25 @@ console.log();
       {
         type: 'array',
         required: true,
-        message: 'Please select time!',
+        message: 'Please select Date!',
       },
       ]}
        >
-        <RangePicker showTime format="YYYY-MM-DD HH:mm:ss" />
+        <RangePicker  format="YYYY-MM-DD" />
       </Form.Item>
+        {/* <Form.Item 
+        name = "Date_Of_Issue" 
+        label="DatePicker"
+        rules= {[
+          {
+            type: 'array',
+            required: true,
+            message: 'Please select time!',
+          },
+          ]}
+          >
+          <DatePicker/>
+        </Form.Item> */}
 
       <Form.Item
         name="RequestedLeave"

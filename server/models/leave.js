@@ -8,6 +8,7 @@ const Leaveschema = mongoose.Schema({
   Leave_Category: { type: String, required: true },
   From: { type: String, required: true },
   To: { type: String, required: true },
+  no_Of_Days : {type : String ,required : true},
   Remarks: { type: String },
   Approver_Id:{type : String },
   Higher_Id:{type : String },
